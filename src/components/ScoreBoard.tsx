@@ -80,6 +80,10 @@ function ScoreBoard() {
         setSelectedTeams(updatedList);
     }
 
+    /**
+     * Following method is resposible for startign a match 
+     * between two teams
+     */
     const startMatch = () => {  
         if (selectedTeams.length == 2) {
             const match : Match = {
@@ -104,6 +108,11 @@ function ScoreBoard() {
         }
     }
 
+    /**
+     * Following method is responsibge for finishing the match
+     * after the match is finished, the teams are available again for a new match
+     * @param event 
+     */
     const gameOver = (event: any) => {
         
         const matches = [...inProgressMatches];
@@ -131,6 +140,11 @@ function ScoreBoard() {
         setTeams(allTeams);
     }
 
+    /**
+     * This updates the real time score and saves it temporarily in updatedMatches
+     * and updat
+     * @param event 
+     */
     const handleScoreChange = (event: any) => {
         const team: string = event.target.id.split('::')[0];
         const matchId = event.target.id.split('::')[1];
@@ -145,6 +159,10 @@ function ScoreBoard() {
         setInProgress(updatedMatches);
     }   
 
+    /**
+     * On click of update button , the match of those teams are updated as saved in updatedMatches
+     * @param event 
+     */
     const updateMatchScore = (event: any) => {
         updatedMatches = [...inProgressMatches];
         if (updatedMatches) {
@@ -162,6 +180,12 @@ function ScoreBoard() {
         }
     }
 
+    /**
+     * This method is responsible for sorting the matches as per the total score and 
+     * matches that have same total score are tehn sorted as per the start date
+     * @param scoreboardMatches 
+     * @returns 
+     */
     const sortMatchesByScoreAndDate = (scoreboardMatches: Match[]) => {
         const sortedArr: Match[] = [];
         // Step 1 : sort by score
